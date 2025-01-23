@@ -70,8 +70,8 @@ async def respond_chat(
         model=CONFIG["model_name"], messages=messages, stream=True, temperature=0.0
     )
 
-    async for chunk in stream:
-        chunk_stream = chunk["message"]["content"]
+    async for event in stream:
+        chunk_stream = event.choices[0].delta.content
         chat_history[-1]["content"] += chunk_stream
         # replace newlines with <br>
         chat_history[-1]["content"] = chat_history[-1]["content"].replace("\n", "<br>")

@@ -10,7 +10,15 @@ This repository contains the logical code to run NoxtuaCompliance with vllm. A G
 2. Run vllm
 
     ```sh
-    docker run --runtime nvidia --gpus all -v ~/.cache/huggingface:/root/.cache/huggingface -p 8000:8000 --ipc=host vllm/vllm-openai:v0.6.6.post1 --model xaynetwork/NoxtuaCompliance --tensor-parallel-size=2 --disable-log-requests --max-model-len 120000 --gpu-memory-utilization 0.95
+    docker run --runtime nvidia --gpus all -v ~/.cache/huggingface:/root/.cache/huggingface -p 8000:8000 --ipc=host vllm/vllm-openai:v0.6.6.post1 --model xaynetwork/NoxtuaCompliance --tensor-parallel-size=8 --disable-log-requests --max-model-len 120000 --gpu-memory-utilization 0.95
+    ```
+
+    Adjust `tensor-parallel-size` to be the amount of available GPUs and to be the same number as specified for the docker command.
+
+3. Validate hosted model
+
+    ```sh
+    curl http://0.0.0.0:8000/v1/models
     ```
 
 ## Setup

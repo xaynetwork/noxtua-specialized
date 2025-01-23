@@ -20,4 +20,3 @@ def read_config() -> Dict[str, str]:
 CONFIG = read_config()
 
 MODEL_CLIENT = AsyncOpenAI(api_key="EMPTY", base_url="http://localhost:8000/v1")
-MODEL = "xaynetwork/NoxtuaCompliance"
